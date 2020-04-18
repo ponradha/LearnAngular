@@ -1,0 +1,73 @@
+<nav>
+    <ul id="menu">
+        <li><a [routerLink]="'/login'"> <i class="fas fa-user"></i> Login </a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="registerform">
+        <h1>User Registration</h1>
+        <form id="userForm">
+            <div>
+                <span class="label" for="username">Name: </span>
+                <input type="text" id="username">
+            </div>
+            <div>
+                <span class="label" for="email">Email: </span>
+                <input type="text" id="email">
+            </div>
+            <div>
+                <span class="label" for="age">Age: </span>
+                <input type="number" id="age">
+            </div>
+            <div>
+                <span class="label" for="age">Mobile No: </span>
+                <input type="number" id="mobile">
+            </div>
+            <div>
+                <span class="label" for="pan">PAN Number: </span>
+                <input type="text" id="pan">
+            </div>
+    <!--        <div><span class="label">Occupation: </span>
+                <select name="occupation" id="occupation" onselect="OnOccupationChange()">
+                    <option value="student">Student</option>
+                    <option value="work">Working</option>
+                    <option value="gov">Govt Offcial</option>
+                    <option value="idle">Idle / Retired</option>
+                </select>
+            </div>-->
+            <div id="occupationDiv" style="display:none">
+                <div>
+                    <span class="label" for="occupationName"> </span>
+                    <input type="text" id="occuName">
+                </div>
+                <div>
+                    <span class="label" for="occuPlace">Place: </span>
+                    <input type="text" id="occuPlace">
+                </div>
+            </div>
+            <div>
+                <span class="label">Hobbies: </span>
+                <input type="checkbox" name="hobby" value="reading">Reading
+
+                <input type="checkbox" name="hobby" value="cyclng">Cycling
+
+                <input type="checkbox" name="hobby" value="surfing">Net Surfing
+
+                <input type="checkbox" name="hobby" value="gardening">Gardening
+            </div>
+            <div>
+                <span class="label">Gender:</span> 
+                <input type="radio" value="m" name="gender">Male
+
+                <input type="radio" value="f" name="gender">Female
+
+                <input type="radio" value="o" name="gender">Other
+            </div>
+            <div class="buttondiv">
+                <button>Register</button>
+                <button>cancel</button> 
+            </div>
+        </form>
+    </div>
+</div>
