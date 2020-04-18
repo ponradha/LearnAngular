@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Base styles
+body {
+    margin: 0;
+}
+
+// Menu or link styles
+#menu {
+    list-style-type: none;
+    position: fixed;
+    top: 15px;
+    right: 50px;
+}
+
+#menu li{
+    display: inline;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+#menu li:hover{
+color:#b9b9b9;
+}
+
+#menu li i{
+    padding: 0 10px 0 20px;
+}
+
+
+// Form styles
+input[type='text'], input[type='number'], input[type='password'] {
+    padding: 6px;
+    min-width: 200px;
+}
+
+.formcontrol{
+    margin-bottom: 15px;
+}
+
+input {
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #508450 !important;
+    opacity: 0.8;
+}
+
+button {
+    cursor: pointer;
+    background-color: #508450;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 6px;
+    border-radius: 4px;
+    border: 2px solid #fff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+span.label {
+    width: 120px !important;
+    display: inline-block;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.aligncenter {
+    text-align: center !important;
+}
+
+
+// Formatting styles
+
+.ml30 {
+    margin-left: 30px;
+}
