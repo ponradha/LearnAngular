@@ -10,10 +10,17 @@ import { DatePipe } from '@angular/common';
 })
 export class LoginComponent implements OnInit {
 
+  loginHeader = 'User Login';
+  pwdLabelColor = '#ff0000';
+  pwdPlaceHolderText = 'enter password';
   constructor(private soundarPipe: DatePipe) {
    }
 
   ngOnInit() {
+  }
+
+  login() {
+    alert('Login button clicked');
   }
 
 }
