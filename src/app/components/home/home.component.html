@@ -4,7 +4,7 @@
     </ul>
 <div class="container">
     <div class="usertable">
-        <h3 class="ml30">Registered Users</h3>
+        <h3 class="ml30" [ngClass]="headerClass">Registered Users</h3>
         <table>
             <thead>
                 <tr>
@@ -13,51 +13,23 @@
                     <th>Age</th>
                     <th>Gender</th>
                     <th>PAN Number</th>
-                    <th>Hoppies</th>
+                    <th>Mobile No</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Name001</td>
-                    <td>ponradha01@rmr.com</td>
-                    <td>21</td>
-                    <td>Male</td>
-                    <td>BCHPP5818B</td>
-                    <td>Cycling, Reading</td>
-                </tr>
-                <tr>
-                    <td>Name002</td>
-                    <td>ponradha02@rmr.com</td>
-                    <td>22</td>
-                    <td>Male</td>
-                    <td>BCHPP5828B</td>
-                    <td>Cycling, Reading</td>
-                </tr>
-                <tr>
-                    <td>Name003</td>
-                    <td>ponradha03@rmr.com</td>
-                    <td>23</td>
-                    <td>Male</td>
-                    <td>BCHPP5838B</td>
-                    <td>Cycling, Reading</td>
-                </tr>
-                <tr>
-                    <td>Name004</td>
-                    <td>ponradha04@rmr.com</td>
-                    <td>24</td>
-                    <td>Male</td>
-                    <td>BCHPP5848B</td>
-                    <td>Cycling, Reading</td>
-                </tr>
-                <tr>
-                    <td>Name005</td>
-                    <td>ponradha05@rmr.com</td>
-                    <td>25</td>
-                    <td>Male</td>
-                    <td>BCHPP5858B</td>
-                    <td>Cycling, Reading</td>
+                <tr *ngFor="let user of usersList">
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td [ngStyle]="{'background-color': user.age < 18 ? 'red' : 'blue' }">{{user.age}}</td>
+                    <td>
+                        <span *ngIf="user.gender === 'm'">Male</span>
+                        <span *ngIf="user.gender === 'f'">Female</span>
+                    </td>
+                    <td>{{user.pan}}</td>
+                    <td>{{user.mobile}}</td>
                 </tr>
             </tbody>
         </table>
+        <div class="ml30"><span appNoteColor>Note: If user age is < 18, to be marked in red.</span></div>
     </div>
 </div>

@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NoteColorDirective } from './directives/note-color.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LandingComponent,
     HeaderComponent,
     FooterComponent,
+    NoteColorDirective,
   ],
   imports: [
     BrowserModule,
