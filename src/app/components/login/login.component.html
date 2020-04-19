@@ -5,18 +5,18 @@
 </nav>
 <div class="container">
     <div class="logindiv">
-        <h1>Login</h1>
+        <h1>{{loginHeader}}</h1>
         <form id="loginForm">
             <div class="formcontrol">
-                <span class="label" for="username">User ID: </span>
-                <input type="text" id="username">
+                <span class="label" for="username" [style.color]="'blue'">User ID: </span>
+                <input type="text" id="username" [placeholder]="'enter email Id'">
             </div>
             <div class="formcontrol">
-                <span class="label" for="pwd">Password: </span>
-                <input type="password" id="pwd">
+                <span class="label" for="pwd" [style.color]="pwdLabelColor">Password: </span>
+                <input type="password" id="pwd" [placeholder]="pwdPlaceHolderText">
             </div>
             <div class="buttondiv">
-                <button>Login</button>
+                <button (click)="login()">Login</button>
                 <button>cancel</button> 
             </div>
         </form>

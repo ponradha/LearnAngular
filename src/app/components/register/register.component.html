@@ -6,11 +6,11 @@
 
 <div class="container">
     <div class="registerform">
-        <h1>User Registration</h1>
+        <h1>{{formHeader}}</h1>
         <form id="userForm">
             <div>
                 <span class="label" for="username">Name: </span>
-                <input type="text" id="username">
+                <input type="text" id="username" name="userName" [(ngModel)]="uName">
             </div>
             <div>
                 <span class="label" for="email">Email: </span>
