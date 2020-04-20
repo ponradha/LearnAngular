@@ -11,6 +11,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NoteColorDirective } from './directives/note-color.directive';
+import { MobileNumberPipe } from './pipes/mobile-number.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NoteColorDirective } from './directives/note-color.directive';
     HeaderComponent,
     FooterComponent,
     NoteColorDirective,
+    MobileNumberPipe,
   ],
   imports: [
     BrowserModule,
