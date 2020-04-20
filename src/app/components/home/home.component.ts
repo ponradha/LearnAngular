@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  todayDate = new Date();
   headerClass = 'user-list-header';
   usersList: any = [
     {

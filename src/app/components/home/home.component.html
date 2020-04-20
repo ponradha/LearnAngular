@@ -18,18 +18,18 @@
             </thead>
             <tbody>
                 <tr *ngFor="let user of usersList">
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
+                    <td>{{user.name | titlecase }}</td>
+                    <td>{{user.email | lowercase }}</td>
                     <td [ngStyle]="{'background-color': user.age < 18 ? 'red' : 'blue' }">{{user.age}}</td>
                     <td>
                         <span *ngIf="user.gender === 'm'">Male</span>
                         <span *ngIf="user.gender === 'f'">Female</span>
                     </td>
-                    <td>{{user.pan}}</td>
-                    <td>{{user.mobile}}</td>
+                    <td>{{user.pan | uppercase }}</td>
+                    <td>{{user.mobile | mobileNumber}}</td>
                 </tr>
             </tbody>
         </table>
-        <div class="ml30"><span appNoteColor>Note: If user age is < 18, to be marked in red.</span></div>
+        <div class="ml30"><span appNoteColor>Note: If user age is < 18, to be marked in red. (Today's Date is: {{ todayDate | date:'longDate' }})</span></div>
     </div>
 </div>
