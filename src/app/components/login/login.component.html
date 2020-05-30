@@ -7,18 +7,27 @@
 <div class="container">
     <div class="logindiv">
         <h1>{{loginHeader}}</h1>
-        <form id="loginForm">
+        <form id="loginForm" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
             <div class="formcontrol">
-                <span class="label" for="username" [style.color]="'blue'">User ID: </span>
-                <input type="text" id="username" [placeholder]="'enter email Id'">
+                <span class="label" for="userID" [style.color]="'blue'">User ID: </span>
+                <input type="text" id="userID" [placeholder]="'enter email Id'" name="userID" #uID="ngModel" ngModel required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+            </div>
+            <div *ngIf="uID.touched && uID.invalid" class="errordiv">
+                <div *ngIf="uID.errors.required"> Please enter the user ID </div>
+                <div *ngIf="uID.errors.pattern"> Please enter a valid email ID </div>
             </div>
             <div class="formcontrol">
                 <span class="label" for="pwd" [style.color]="pwdLabelColor">Password: </span>
-                <input type="password" id="pwd" [placeholder]="pwdPlaceHolderText">
+                <input type="password" id="pwd" [placeholder]="pwdPlaceHolderText" name="pwd" ngModel required minlength="8" maxlength="20">
+            </div>
+            <div *ngIf="loginForm.controls.pwd?.touched && loginForm.controls.pwd?.invalid" class="errordiv">
+                <div *ngIf="loginForm.controls.pwd.errors.required"> Please enter the password </div>
+                <div *ngIf="loginForm.controls.pwd.errors.minlength"> Password must be minimum 8 chars </div>
             </div>
             <div class="buttondiv">
-                <button (click)="login()">Login</button>
-                <button>cancel</button> 
+                <button type="submit" [disabled]="loginForm.invalid">Login</button>
+                <button type="button" (click)="resetForm(loginForm)">cancel</button>
+               <!--  <button type="reset">cancel</button> -->
             </div>
         </form>
     </div>

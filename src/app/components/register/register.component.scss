@@ -2,8 +2,14 @@
 div.container  {    
     width: 50%;
     margin: auto;
+    margin-bottom: 30px;
 }
 
 div.registerform div {    
     padding: 10px;    
+}
+
+.errmsg {
+    color: red;
+    margin-left:110px;
 }
