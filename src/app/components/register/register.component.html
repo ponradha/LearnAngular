@@ -7,66 +7,64 @@
 <div class="container">
     <div class="registerform">
         <h1>{{formHeader}}</h1>
-        <form id="userForm">
+        <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
             <div>
-                <span class="label" for="username">Name: </span>
-                <input type="text" id="username" name="userName" [(ngModel)]="uName">
+                <span class="label">Name: </span>
+                <input type="text" name="uName" formControlName="uName">
+                <div class="errmsg" *ngIf="registerForm.controls.uName?.touched && registerForm.controls.uName.errors?.required">Please enter name</div>
+                <div class="errmsg" *ngIf="name?.touched && name.errors?.minlength">Name must be greater than 2 chars</div>
             </div>
             <div>
-                <span class="label" for="email">Email: </span>
-                <input type="text" id="email">
+                <span class="label">Email: </span>
+                <input type="text" name="uMail" formControlName="uMail">
+                <div class="errmsg" *ngIf="emailAddress?.touched && emailAddress.errors?.required">Please enter an email</div>
+                <div class="errmsg" *ngIf="emailAddress?.touched && emailAddress.errors?.pattern">Please enter a valid email</div>
             </div>
             <div>
-                <span class="label" for="age">Age: </span>
-                <input type="number" id="age">
+                <span class="label">Age: </span>
+                <input type="number" name="uAge" formControlName="uAge">
+                <div class="errmsg" *ngIf="age?.touched && age.errors?.required">Please enter the age</div>
             </div>
             <div>
-                <span class="label" for="age">Mobile No: </span>
-                <input type="number" id="mobile">
+                <span class="label">Mobile No: </span>
+                <input type="text" name="uMobile" formControlName="uMobile">
+                <div class="errmsg" *ngIf="mobile?.touched && mobile.errors?.required">Please enter mobile No</div>
             </div>
             <div>
-                <span class="label" for="pan">PAN Number: </span>
-                <input type="text" id="pan">
+                <span class="label">PAN Number: </span>
+                <input type="text" name="uPAN" formControlName="uPAN">
+                <div class="errmsg" *ngIf="PAN?.touched && PAN.errors?.required">Please enter PAN</div>
             </div>
-    <!--        <div><span class="label">Occupation: </span>
-                <select name="occupation" id="occupation" onselect="OnOccupationChange()">
-                    <option value="student">Student</option>
-                    <option value="work">Working</option>
-                    <option value="gov">Govt Offcial</option>
-                    <option value="idle">Idle / Retired</option>
-                </select>
-            </div>-->
-            <div id="occupationDiv" style="display:none">
-                <div>
-                    <span class="label" for="occupationName"> </span>
-                    <input type="text" id="occuName">
-                </div>
-                <div>
-                    <span class="label" for="occuPlace">Place: </span>
-                    <input type="text" id="occuPlace">
-                </div>
+            <div>
+                <span class="label">Password: </span>
+                <input type="password" name="password" formControlName="password">
+                <div class="errmsg" *ngIf="password?.touched && password.errors?.required">Please enter Password</div>
+                <div class="errmsg" *ngIf="password?.touched && password.errors?.pattern">Password must have 8-20 chars, one number, one uppercase, one lowercase</div>
+            </div>
+            <div>
+                <span class="label">Confirm Password: </span>
+                <input type="password" name="confirmPassword" formControlName="confirmPassword">
+                <div class="errmsg" *ngIf="cPassword?.touched && cPassword.errors?.required">Please enter confirm password</div>
+                <div class="errmsg" *ngIf="cPassword?.touched && registerForm.errors?.pwdMismatch">Confirm password is not matching</div>
             </div>
             <div>
                 <span class="label">Hobbies: </span>
-                <input type="checkbox" name="hobby" value="reading">Reading
+                <label formArrayName="uHobbies" *ngFor="let hobby of registerForm.get('uHobbies')['controls']; let i=index">
+                    <input type="checkbox" [value]="hobbiesList[i].value" name="i" [formControlName]="i"/> {{hobbiesList[i].name}}
+                </label>
 
-                <input type="checkbox" name="hobby" value="cyclng">Cycling
-
-                <input type="checkbox" name="hobby" value="surfing">Net Surfing
-
-                <input type="checkbox" name="hobby" value="gardening">Gardening
+                <div class="errmsg" *ngIf="registerForm.touched && registerForm.controls.uHobbies.errors?.required">Please select minimum 2 hobbies</div>
             </div>
             <div>
                 <span class="label">Gender:</span> 
-                <input type="radio" value="m" name="gender">Male
-
-                <input type="radio" value="f" name="gender">Female
-
-                <input type="radio" value="o" name="gender">Other
+                <input type="radio" value="m" name="uGender" formControlName="uGender">Male
+                <input type="radio" value="f" name="uGender" formControlName="uGender">Female
+                <input type="radio" value="o" name="uGender" formControlName="uGender">Other
+                <div class="errmsg" *ngIf="registerForm.touched && gender.errors?.required">Please select a gender</div>
             </div>
             <div class="buttondiv">
-                <button>Register</button>
-                <button>cancel</button> 
+                <button type="submit" [disabled]="registerForm.invalid">Register</button>
+                <button type="reset">cancel</button>
             </div>
         </form>
     </div>
