@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { FormGroup } from '@angular/forms';
-import * as CryptoJS from 'crypto-js';
+import { NgForm } from '@angular/forms';
+import { CryptoService } from 'src/app/services/crypto.service';
+import { LoggerService } from 'src/app/services/logger.service';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -15,18 +17,21 @@ export class LoginComponent implements OnInit {
   loginHeader = 'User Login';
   pwdLabelColor = '#ff0000';
   pwdPlaceHolderText = 'enter password';
-  constructor(private datePipe: DatePipe) {
+  constructor(private datePipe: DatePipe, private cryptoService: CryptoService, private loggerService: LoggerService,
+              private loginService: LoginService) {
    }
 
   ngOnInit() {
   }
 
-  login(signInForm: FormGroup) {
-    signInForm.value.pwd = CryptoJS.SHA256(signInForm.value.pwd).toString();
-    console.log('Form value is -->', signInForm.value);
+  login(signInForm: NgForm) {
+    signInForm.value.pwd = this.cryptoService.passwordHashing(signInForm.value.pwd);
+    this.loggerService.log('Login Form value is -->' + JSON.stringify(signInForm.value));
+    this.loginService.userLogin(signInForm.value);
+    signInForm.reset();
   }
 
-  resetForm(signInForm: FormGroup) {
+  resetForm(signInForm: NgForm) {
     signInForm.reset();
   }
 

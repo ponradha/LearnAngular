@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ValidatorFn } from '@angular/forms';
-import * as CryptoJS from 'crypto-js';
+import { CryptoService } from 'src/app/services/crypto.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
     {name: 'Gardening', value: 'gardening'},
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private cryptoService: CryptoService, private loggerService: LoggerService) {
     this.registerForm = this.fb.group({
       uName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       uMail: new FormControl('', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)]),
@@ -73,11 +74,10 @@ export class RegisterComponent implements OnInit {
     .filter((val: string) => val !== null);
 
     this.registerForm.value.uHobbies = selectedHobbies;
-    const hashedPwd = CryptoJS.SHA256(this.registerForm.value.password);
-    this.registerForm.value.password = hashedPwd.toString();
+    this.registerForm.value.password = this.cryptoService.passwordHashing(this.registerForm.value.password);
     delete this.registerForm.value.confirmPassword;
-
-    console.log('FINAL form data Value -->', this.registerForm.value);
+    this.loggerService.log('Final Register form Value-->' + JSON.stringify(this.registerForm.value));
+    this.registerForm.reset();
   }
 
   get name() {
