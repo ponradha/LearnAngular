@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-userDetails: any;
+
+  getUserAPIUrl = environment.API_URL + '/api/user';
+  getUsersListAPIUrl = environment.API_URL + '/api/users';
+  userDetails: any;
   constructor(private http: HttpClient) { }
 
 setUserDetails(user: any) {
@@ -18,11 +22,11 @@ getUserDetails() {
 }
 
 getUser() {
-  return this.http.get('http://localhost:8090/api/user');
+  return this.http.get(this.getUserAPIUrl);
 }
 
 getUsersList() {
-  return this.http.get('http://localhost:8090/api/users');
+  return this.http.get(this.getUsersListAPIUrl);
 }
 
 }
