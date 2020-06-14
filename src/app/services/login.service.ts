@@ -3,12 +3,14 @@ import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  signInAPIUrl = environment.API_URL + '/api/auth/signin';
   sessionTimer: any;
   logoutTimer: any;
   constructor(private userService: UserService, private http: HttpClient, private storageService: StorageService,
@@ -20,7 +22,7 @@ export class LoginService {
       pwd: loginData.pwd
     };
 
-    this.http.post('http://localhost:8090/api/auth/signin', userObj).subscribe((resp: any) => {
+    this.http.post(this.signInAPIUrl, userObj).subscribe((resp: any) => {
       console.log('resp is-->', resp);
       if (resp.accessToken) {
         this.storageService.setSessionData('token', resp.accessToken);
