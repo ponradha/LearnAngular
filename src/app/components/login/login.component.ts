@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { NgForm } from '@angular/forms';
-import { CryptoService } from 'src/app/services/crypto.service';
-import { LoggerService } from 'src/app/services/logger.service';
-import { LoginService } from 'src/app/services/login.service';
+import { CryptoService } from '../../services/crypto.service';
+import { LoggerService } from '../../services/logger.service';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
