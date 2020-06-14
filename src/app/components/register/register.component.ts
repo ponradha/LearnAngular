@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ValidatorFn } from '@angular/forms';
 import { CryptoService } from 'src/app/services/crypto.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { RegisterService } from 'src/app/services/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,8 @@ export class RegisterComponent implements OnInit {
     {name: 'Gardening', value: 'gardening'},
   ];
 
-  constructor(private fb: FormBuilder, private cryptoService: CryptoService, private loggerService: LoggerService) {
+  constructor(private fb: FormBuilder, private cryptoService: CryptoService, private loggerService: LoggerService,
+              private registerService: RegisterService, private router: Router) {
     this.registerForm = this.fb.group({
       uName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       uMail: new FormControl('', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/)]),
@@ -73,11 +76,20 @@ export class RegisterComponent implements OnInit {
     .map((val: string, index: number) => (val ? this.hobbiesList[index].value : null))
     .filter((val: string) => val !== null);
 
-    this.registerForm.value.uHobbies = selectedHobbies;
+    this.registerForm.value.uPAN = this.registerForm.value.uPAN.toUpperCase();
+    this.registerForm.value.uHobbies = selectedHobbies.join(',');
     this.registerForm.value.password = this.cryptoService.passwordHashing(this.registerForm.value.password);
     delete this.registerForm.value.confirmPassword;
-    this.loggerService.log('Final Register form Value-->' + JSON.stringify(this.registerForm.value));
-    this.registerForm.reset();
+
+    this.registerForm.value.uHobbies = 'rcvsvvsdvasd@a';
+
+    this.registerService.newUserRegistration(this.registerForm.value).subscribe((resp) => {
+      alert('User Registered Successfully!. Try logging in now');
+      this.registerForm.reset();
+      this.router.navigate(['/login']);
+    }, (err) => {
+      console.log('Err is-->', err);
+    });
   }
 
   get name() {
