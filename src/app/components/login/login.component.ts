@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   loginHeader = 'User Login';
   pwdLabelColor = '#ff0000';
   pwdPlaceHolderText = 'enter password';
+  isForgotPassword: boolean;
   constructor(private datePipe: DatePipe, private cryptoService: CryptoService, private loggerService: LoggerService,
               private loginService: LoginService) {
    }
@@ -32,6 +33,25 @@ export class LoginComponent implements OnInit {
   }
 
   resetForm(signInForm: NgForm) {
+    signInForm.reset();
+  }
+
+  setResetPassword() {
+    this.isForgotPassword = true;
+    this.loginHeader = 'Password Reset';
+  }
+
+  resetPassword(signInForm) {
+    this.loggerService.log('Login Form value is -->' + JSON.stringify(signInForm.value));
+    const dataobj = {
+      uMail: signInForm.value.userID
+    };
+
+    this.loginService.resetPassword(dataobj).subscribe((resp) => {
+      console.log('Resp - resetpasword', resp);
+      this.isForgotPassword = false;
+      this.loginHeader = 'User Login';
+    });
     signInForm.reset();
   }
 

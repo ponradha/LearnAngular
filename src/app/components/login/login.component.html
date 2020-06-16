@@ -15,7 +15,7 @@
                 <div *ngIf="uID.errors.required"> Please enter the user ID </div>
                 <div *ngIf="uID.errors.pattern"> Please enter a valid email ID </div>
             </div>
-            <div class="formcontrol">
+            <div *ngIf="!isForgotPassword" class="formcontrol">
                 <span class="label" for="pwd" [style.color]="pwdLabelColor">Password: </span>
                 <input type="password" id="pwd" [placeholder]="pwdPlaceHolderText" name="pwd" ngModel required minlength="8" maxlength="20">
             </div>
@@ -24,9 +24,13 @@
                 <div *ngIf="loginForm.controls.pwd.errors.minlength"> Password must be minimum 8 chars </div>
             </div>
             <div class="buttondiv">
-                <button type="submit" [disabled]="loginForm.invalid">Login</button>
-                <button type="button" (click)="resetForm(loginForm)">cancel</button>
+                <button type="submit" *ngIf="!isForgotPassword" [disabled]="loginForm.invalid">Login</button>
+                <button type="button" *ngIf="!isForgotPassword" (click)="resetForm(loginForm)">cancel</button>
+                <button type="button" *ngIf="isForgotPassword" (click)="resetPassword(loginForm)">Reset Password</button>
                <!--  <button type="reset">cancel</button> -->
+            </div>
+            <div class="buttondiv" *ngIf="!isForgotPassword">
+                <a class="forgotpass" (click)="setResetPassword()">Forgot password?</a>
             </div>
         </form>
     </div>
