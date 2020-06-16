@@ -11,8 +11,10 @@ import { environment } from '../../environments/environment';
 export class LoginService {
 
   signInAPIUrl = environment.API_URL + '/api/auth/signin';
+  resetPasswordAPIUrl = environment.API_URL + '/api/auth/forgotpassword';
   sessionTimer: any;
   logoutTimer: any;
+
   constructor(private userService: UserService, private http: HttpClient, private storageService: StorageService,
               private router: Router) { }
 
@@ -38,6 +40,10 @@ export class LoginService {
 
   getToken() {
     return this.storageService.getSessionData('token');
+  }
+
+  resetPassword(dataObj: any) {
+    return this.http.post(this.resetPasswordAPIUrl, dataObj);
   }
 
   initInactivityTimer() {

@@ -1,20 +1,32 @@
 
 
 .logindiv {
-    text-align: center;
+    width: 25%;
+    margin: auto;
 }
 
-.buttondiv button{
-    background-color: #508450;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 6px;
-    border-radius: 4px;
-    border: 2px solid #fff;
-    font-weight: bold;
+.buttondiv {
+    margin-left:30%;
+    button{
+        background-color: #508450;
+        color: #fff;
+        padding: 10px 20px;
+        margin: 6px;
+        border-radius: 4px;
+        border: 2px solid #fff;
+        font-weight: bold;
+    }
 }
 
 .errordiv {
     padding: 0 0 10px 60px;
     color:red;
+}
+
+.forgotpass{
+    cursor: pointer;
+    color: #66a9e2;
+    &:hover {
+        opacity: 0.5;
+    }
 }
