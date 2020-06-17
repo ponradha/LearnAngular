@@ -81,8 +81,6 @@ export class RegisterComponent implements OnInit {
     this.registerForm.value.password = this.cryptoService.passwordHashing(this.registerForm.value.password);
     delete this.registerForm.value.confirmPassword;
 
-    this.registerForm.value.uHobbies = 'rcvsvvsdvasd@a';
-
     this.registerService.newUserRegistration(this.registerForm.value).subscribe((resp) => {
       alert('User Registered Successfully!. Try logging in now');
       this.registerForm.reset();
