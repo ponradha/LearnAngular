@@ -1,0 +1,14 @@
+<nav>
+    <ul id="menu">
+        <li><a (click)="logoutUser()"> <i class="fas fa-user"></i> Logout </a></li>
+    </ul>
+</nav>
+<div class="container userprofile">
+     <div class="title">User Profile</div>
+     <div><span class="label">Name</span>{{userProfile?.name}}</div>
+     <div><span class="label">Email</span>{{userProfile?.email}}</div>
+     <div><span class="label">Age</span>{{userProfile?.age}}</div>
+     <div><span class="label">Gender</span>{{userProfile?.name}}</div>
+     <div><span class="label">PAN Number</span>{{userProfile?.pan | uppercase}}</div>
+     <div><span class="label">Mobile No</span>{{userProfile?.mobileno}}</div>
+</div>

@@ -7,7 +7,7 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -18,6 +18,9 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request)
     .pipe(
+      map((resp) => {
+        return resp;
+      }),
       catchError((err) => {
         console.log('error is-->', err);
         console.log('error status-->', err.status);

@@ -2,8 +2,8 @@
     <ul id="menu">
         <li><a (click)="logoutUser()"> <i class="fas fa-user"></i> Logout </a></li>
     </ul>
-<div class="container" *ngIf="isAdmin">
-    <!-- <div>Hi, {{userDetails.userID}}</div> -->
+</nav>
+<div class="container">
     <div class="usertable">
         <h3 class="ml30" [ngClass]="headerClass">Registered Users</h3>
         <table>
@@ -35,12 +35,3 @@
     </div>
 </div>
 
-<div class="container userprofile" *ngIf="!isAdmin">
-     <div class="title">User Profile</div>
-     <div><span class="label">Name</span>{{userProfile?.name}}</div>
-     <div><span class="label">Email</span>{{userProfile?.email}}</div>
-     <div><span class="label">Age</span>{{userProfile?.age}}</div>
-     <div><span class="label">Gender</span>{{userProfile?.name}}</div>
-     <div><span class="label">PAN Number</span>{{userProfile?.pan | uppercase}}</div>
-     <div><span class="label">Mobile No</span>{{userProfile?.mobileno}}</div>
-</div>

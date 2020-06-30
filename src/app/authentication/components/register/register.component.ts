@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray, ValidatorFn } from '@angular/forms';
-import { CryptoService } from '../../services/crypto.service';
-import { LoggerService } from '../../services/logger.service';
+import { CryptoService } from '../../../core/services/crypto.service';
+import { LoggerService } from '../../../core/services/logger.service';
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
 
