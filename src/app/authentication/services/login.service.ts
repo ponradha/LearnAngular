@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
-import { StorageService } from './storage.service';
+import { StorageService } from '../../core/services/storage.service';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class LoginService {
   sessionTimer: any;
   logoutTimer: any;
 
-  constructor(private userService: UserService, private http: HttpClient, private storageService: StorageService,
+  constructor(private http: HttpClient, private storageService: StorageService,
               private router: Router) { }
 
   userLogin(loginData) {
@@ -29,8 +28,12 @@ export class LoginService {
       if (resp.accessToken) {
         this.storageService.setSessionData('token', resp.accessToken);
         loginData.role = resp.role;
-        this.userService.setUserDetails(loginData);
-        this.router.navigate(['/home']);
+        this.storageService.setSessionData('userDetails', JSON.stringify(loginData));
+        if (resp.role === 'level1') {
+          this.router.navigate(['/user/profile']);
+        } else if (resp.role === 'level2') {
+          this.router.navigate(['/user/list']);
+        }
         this.initInactivityTimer();
       }
     }, (err) => {
@@ -92,6 +95,7 @@ export class LoginService {
   userLogout() {
     this.clearTimers();
     this.storageService.deleteSessionData('token');
+    this.storageService.deleteSessionData('userDetails');
     this.router.navigate(['/login']);
   }
 }

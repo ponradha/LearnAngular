@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { LandingComponent } from './components/landing/landing.component';
-import { AuthenticationGuard } from './guards/authentication.guard';
+/* import { HomeComponent } from './core/components/home/home.component'; */
+import { AuthenticationGuard } from './core/guards/authentication.guard';
+import { LandingComponent } from './core/components/landing/landing.component';
 
 
 const routes: Routes = [
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]},
+/*   {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]}, */
   {path: 'index', component: LandingComponent},
   {path: '', redirectTo: 'index', pathMatch: 'full'},
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   {path: '**', redirectTo: 'index', pathMatch: 'full'},
 ];
 
