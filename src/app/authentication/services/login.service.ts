@@ -28,11 +28,11 @@ export class LoginService {
       if (resp.accessToken) {
         this.storageService.setSessionData('token', resp.accessToken);
         loginData.role = resp.role;
-        this.storageService.setSessionData('userDetails', JSON.stringify(loginData));
+        this.storageService.setSessionData('userDetails', JSON.stringify(resp));
         if (resp.role === 'level1') {
-          this.router.navigate(['/user/profile']);
+          this.router.navigate(['/users/profile']);
         } else if (resp.role === 'level2') {
-          this.router.navigate(['/user/list']);
+          this.router.navigate(['/users/list']);
         }
         this.initInactivityTimer();
       }

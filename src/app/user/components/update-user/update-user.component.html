@@ -1,1 +1,46 @@
-<p>update-user works!</p>
+<div class="m20"><a [routerLink]="'/users/list'"> BACK </a></div>
+<div class="container">
+    <div class="userForm">
+        <h1>Update User Details</h1>
+        <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+            <div>
+                <span class="label">Name: </span>
+                <input type="text" name="uName" formControlName="uName">
+                <div class="errmsg" *ngIf="userForm.controls.uName?.touched && userForm.controls.uName.errors?.required">Please enter name</div>
+                <div class="errmsg" *ngIf="name?.touched && name.errors?.minlength">Name must be greater than 2 chars</div>
+            </div>
+            <div>
+                <span class="label">Email: </span>
+                <input type="text" name="uMail" formControlName="uMail">
+                <div class="errmsg" *ngIf="emailAddress?.touched && emailAddress.errors?.required">Please enter an email</div>
+                <div class="errmsg" *ngIf="emailAddress?.touched && emailAddress.errors?.pattern">Please enter a valid email</div>
+            </div>
+            <div>
+                <span class="label">Age: </span>
+                <input type="number" name="uAge" formControlName="uAge">
+                <div class="errmsg" *ngIf="age?.touched && age.errors?.required">Please enter the age</div>
+            </div>
+            <div>
+                <span class="label">Mobile No: </span>
+                <input type="text" name="uMobile" formControlName="uMobile">
+                <div class="errmsg" *ngIf="mobile?.touched && mobile.errors?.required">Please enter mobile No</div>
+            </div>
+            <div>
+                <span class="label">PAN Number: </span>
+                <input type="text" name="uPAN" formControlName="uPAN">
+                <div class="errmsg" *ngIf="PAN?.touched && PAN.errors?.required">Please enter PAN</div>
+            </div>
+            <div>
+                <span class="label">Gender:</span> 
+                <input type="radio" value="m" name="uGender" formControlName="uGender">Male
+                <input type="radio" value="f" name="uGender" formControlName="uGender">Female
+                <input type="radio" value="o" name="uGender" formControlName="uGender">Other
+                <div class="errmsg" *ngIf="userForm.touched && gender.errors?.required">Please select a gender</div>
+            </div>
+            <div class="buttondiv">
+                <button type="submit" [disabled]="userForm.invalid">Update</button>
+                <button type="reset">cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

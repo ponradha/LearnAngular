@@ -9,7 +9,7 @@ const routes: Routes = [
 /*   {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]}, */
   {path: 'index', component: LandingComponent},
   {path: '', redirectTo: 'index', pathMatch: 'full'},
-  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+  { path: 'users', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   {path: '**', redirectTo: 'index', pathMatch: 'full'},
 ];
 
