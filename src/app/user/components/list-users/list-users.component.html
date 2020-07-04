@@ -3,6 +3,9 @@
         <li><a (click)="logoutUser()"> <i class="fas fa-user"></i> Logout </a></li>
     </ul>
 </nav>
+<div class="buttondiv txtright">
+    <button type="button" (click)="createUser()">Create User</button>
+</div>
 <div class="container">
     <div class="usertable">
         <h3 class="ml30" [ngClass]="headerClass">Registered Users</h3>
@@ -15,6 +18,7 @@
                     <th>Gender</th>
                     <th>PAN Number</th>
                     <th>Mobile No</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +32,12 @@
                     </td>
                     <td>{{user.pan | uppercase }}</td>
                     <td>{{user.mobileno | mobileNumber}}</td>
+                    <td>
+                        <div class="buttondiv">
+                            <button type="button" (click)="editUser(user)">Edit</button>
+                            <button type="button" (click)="DeleteUser(user._id)">Delete</button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

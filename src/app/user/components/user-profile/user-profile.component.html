@@ -3,7 +3,11 @@
         <li><a (click)="logoutUser()"> <i class="fas fa-user"></i> Logout </a></li>
     </ul>
 </nav>
-<div class="container userprofile">
+<div class="buttondiv txtright">
+    <button type="button" (click)="updateProfile()">Update Profile</button>
+    <button type="button" (click)="changePassword()">Change Password</button>
+</div>
+<div *ngIf="!ischangePassword && !isUpdateProfile" class="container userprofile">
      <div class="title">User Profile</div>
      <div><span class="label">Name</span>{{userProfile?.name}}</div>
      <div><span class="label">Email</span>{{userProfile?.email}}</div>
@@ -11,4 +15,37 @@
      <div><span class="label">Gender</span>{{userProfile?.name}}</div>
      <div><span class="label">PAN Number</span>{{userProfile?.pan | uppercase}}</div>
      <div><span class="label">Mobile No</span>{{userProfile?.mobileno}}</div>
+</div>
+
+<div *ngIf="ischangePassword">
+    <app-change-password></app-change-password>
+</div>
+
+<div *ngIf="isUpdateProfile">
+    <div class="m20"><a href="#" (click)="isUpdateProfile = !isUpdateProfile"> BACK </a></div>
+    <div class="txtcenter">
+        <h1>Update User Profile</h1>
+        <form id="profileUpdateForm" #profileUpdateForm="ngForm" (ngSubmit)="updateUserProfile(profileUpdateForm)">
+            <div class="formcontrol">
+                <span class="label">Mobile No: </span>
+                <input type="text" name="mobileNo" #mobileNo="ngModel" [ngModel]="userProfile?.mobileno" required pattern="^((\+91)?|(91)?|(0)?)([6-9]{1})([0-9]{9})$">
+            </div>
+            <div *ngIf="mobileNo.touched && mobileNo.invalid" class="errordiv">
+                <div *ngIf="mobileNo.errors.required"> Please enter the mobile No </div>
+                <div *ngIf="mobileNo.errors.pattern"> Please enter a valid mobile No </div>
+            </div>
+            <div class="formcontrol">
+                <span class="label">PAN No: </span>
+                <input type="text" name="PANNo" #PANNo="ngModel" [ngModel]="userProfile?.pan" required pattern="^[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}$">
+            </div>
+            <div *ngIf="PANNo.touched && PANNo.invalid" class="errordiv">
+                <div *ngIf="PANNo.errors.required"> Please enter the PAN No </div>
+                <div *ngIf="PANNo.errors.pattern"> Please enter a valid PAN No </div>
+            </div>
+            <div class="txtcenter">
+                <button type="submit" [disabled]="profileUpdateForm.invalid">Update</button>
+                <button type="button" (click)="resetForm(profileUpdateForm)">cancel</button>
+            </div>
+        </form>
+    </div>
 </div>
