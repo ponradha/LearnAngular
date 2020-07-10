@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { LoginService } from '../../../authentication/services/login.service';
-import { StorageService } from 'src/app/core/services/storage.service';
 import { NgForm } from '@angular/forms';
+import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
   selector: 'app-user-profile',
