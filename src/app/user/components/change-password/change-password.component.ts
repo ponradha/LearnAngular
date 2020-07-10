@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CryptoService } from 'src/app/core/services/crypto.service';
+import { CryptoService } from '../../../core/services/crypto.service';
 import { UserService } from '../../services/user.service';
 import { NgForm } from '@angular/forms';
-import { LoginService } from 'src/app/authentication/services/login.service';
+import { LoginService } from '../../../authentication/services/login.service';
 
 @Component({
   selector: 'app-change-password',
